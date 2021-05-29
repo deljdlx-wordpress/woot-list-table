@@ -23,6 +23,8 @@ class ListTable extends WP_List_Table
         $sortable = $this->get_sortable_columns();
         $this->_column_headers = array($columns, $hidden, $sortable);
 
+
+
         $example_data = array(
             array('ID' => 1,'booktitle' => 'Quarter Share', 'author' => 'Nathan Lowell',
                   'isbn' => '978-0982514542'),
