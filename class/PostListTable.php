@@ -55,6 +55,7 @@ class PostListTable extends ListTable
         usort($data, array( &$this, 'usort_reorder' ));
         $this->items = $data;
     }
+
     public function column_default($item, $columnName)
     {
         return $item[$columnName];
@@ -85,8 +86,14 @@ class PostListTable extends ListTable
 
     public function column_id($item)
     {
+
+        $editLink = sprintf('<a href="?page=%s&action=%s&post=%s">Edit</a>', $_REQUEST['page'], 'edit', $item['id']);
+        if($this->editLinkCallback) {
+            $editLink = call_user_func_array($this->editLinkCallback, [$item]);
+        }
+
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&post=%s">Edit</a>', $_REQUEST['page'], 'edit', $item['id']),
+            'edit'      => $editLink,
             'delete'    => sprintf('<a href="?page=%s&action=%s&post=%s">Delete</a>', $_REQUEST['page'], 'delete', $item['id']),
         );
 
