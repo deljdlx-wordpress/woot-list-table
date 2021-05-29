@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Woof\\ListTable\\": "./class"
+        }
+    },
+    "require": {
+
+    },
+    "config": {
+        "vendor-dir": "static-vendor"
+    }
+}
