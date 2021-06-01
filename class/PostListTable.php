@@ -12,7 +12,6 @@ class PostListTable extends ListTable
 
     protected $postType;
 
-
     public function __construct($postTypeName)
     {
         parent::__construct();
@@ -92,9 +91,15 @@ class PostListTable extends ListTable
             $editLink = call_user_func_array($this->editLinkCallback, [$item]);
         }
 
+        $deleteLink = sprintf('<a href="?page=%s&action=%s&post=%s">Delete</a>', $_REQUEST['page'], 'delete', $item['id']);
+        if($this->deleteLinkCallback) {
+            $deleteLink = call_user_func_array($this->deleteLinkCallback, [$item]);
+        }
+
+
         $actions = array(
             'edit'      => $editLink,
-            'delete'    => sprintf('<a href="?page=%s&action=%s&post=%s">Delete</a>', $_REQUEST['page'], 'delete', $item['id']),
+            'delete'    => $deleteLink,
         );
 
         return sprintf('%1$s %2$s', $item['id'], $this->row_actions($actions));
